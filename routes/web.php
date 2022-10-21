@@ -1,7 +1,10 @@
 <?php
 
 use App\Models\Post;
+use Symfony\Component\Yaml\Yaml;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
+use Spatie\YamlFrontMatter\YamlFrontMatter;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,22 +18,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $posts = Post::all();
-
-    // dd($posts[0]->getContents());
     return view('posts', [
-        'posts' => $posts
+        'posts' => Post::all()
     ]);
 });
+
+
 
 Route::get('posts/{post}', function ($slug) {
-
-    $post = Post::find($slug);
-
+    // dd($slug);
     return view('post', [
-        'post' => $post
+        'post' => Post::find($slug)
     ]);
-});
+})->where('post', '[A-z_\-]+');
 
 
 

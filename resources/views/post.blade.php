@@ -11,11 +11,12 @@
 <body>
     <article>
         <h1>
-            <?= $post; ?>
+            <?= $post->title; ?>
         </h1>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Placeat, velit veritatis. Provident cupiditate
-            adipisci aperiam obcaecati commodi quis accusantium sed dolore veniam, unde, corrupti aliquam temporibus!
-            Nulla assumenda sunt facilis!</p>
+        <div>
+            <?= $post->body; ?>
+        </div>
+
     </article>
 
     <a href="/">Go Back</a>
