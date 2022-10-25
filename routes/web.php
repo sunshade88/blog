@@ -1,8 +1,9 @@
 <?php
 
-use App\Models\Category;
 use App\Models\Post;
+use App\Models\Category;
 use Symfony\Component\Yaml\Yaml;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
@@ -20,7 +21,7 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 
 Route::get('/', function () {
     return view('posts', [
-        'posts' => Post::all()
+        'posts' => Post::with('category')->get()
     ]);
 });
 
