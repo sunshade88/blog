@@ -40,6 +40,7 @@
                            value="{{ old('username') }}"
                            required
                     >
+
                     @error('username')
                         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                     @enderror
@@ -59,8 +60,9 @@
                            value="{{ old('email') }}"
                            required
                     >
+
                     @error('email')
-                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
                 </div>
 
@@ -77,27 +79,19 @@
                            id="password"
                            required
                     >
+
                     @error('password')
                         <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                     @enderror
                 </div>
 
-                <div class="mb-6">
+                <div>
                     <button type="submit"
                             class="bg-blue-400 text-white rounded py-2 px-4 hover:bg-blue-500"
                     >
                         Submit
                     </button>
                 </div>
-
-                {{-- @if ($errors->any())
-
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li class="text-xs text-red-500">{{ $error }}</li>
-                    @endforeach
-                </ul>
-                @endif --}}
             </form>
         </main>
     </section>

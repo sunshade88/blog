@@ -1,14 +1,24 @@
 <!doctype html>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Laravel From Scratch Blog</title>
 <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
 
 <style>
     html {
         scroll-behavior: smooth;
+    }
+
+    .clamp {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .clamp.one-line {
+        -webkit-line-clamp: 1;
     }
 </style>
 
@@ -22,19 +32,17 @@
             </div>
 
             <div class="mt-8 md:mt-0 flex items-center">
-                @auth()
-                    <span class="text-xs font-bold uppercase">Welcome {{ auth()->user()->name }}!</span>
+                @auth
+                    <span class="text-xs font-bold uppercase">Welcome, {{ auth()->user()->name }}!</span>
 
-                    <form action="/logout" method="post" class="text-sm font-bold text-emerald-700 ml-5">
+                    <form method="POST" action="/logout" class="text-xs font-semibold text-blue-500 ml-6">
                         @csrf
 
-
                         <button type="submit">Log Out</button>
-
                     </form>
                 @else
                     <a href="/register" class="text-xs font-bold uppercase">Register</a>
-                    <a href="/login" class="text-xs font-bold uppercase ml-6">Log In</a>
+                    <a href="/login" class="ml-6 text-xs font-bold uppercase">Log In</a>
                 @endauth
 
                 <a href="#newsletter"
@@ -57,12 +65,13 @@
 
                     <form method="POST" action="/newsletter" class="lg:flex text-sm">
                         @csrf
+
                         <div class="lg:py-3 lg:px-5 flex items-center">
                             <label for="email" class="hidden lg:inline-block">
                                 <img src="/images/mailbox-icon.svg" alt="mailbox letter">
                             </label>
 
-                            <div class="">
+                            <div>
                                 <input id="email" name="email" type="text" placeholder="Your email address"
                                     class="lg:bg-transparent py-2 lg:py-0 pl-4 focus-within:outline-none">
 
